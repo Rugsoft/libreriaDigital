@@ -237,12 +237,17 @@ body {
     background-color: rgba(197, 168, 128, 0.03);
 }
 
+.contenedor__listado-acciones {
+
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
 .contenedor__listado-tabla button {
-    background: transparent;
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    color: #ef4444;
+
     padding: 0.4rem 0.8rem;
-    border-radius: 3px;
+    border-radius: 4px;
     font-size: 0.8rem;
     font-family: var(--font-body);
     font-weight: 600;
@@ -250,10 +255,30 @@ body {
     transition: var(--transition);
 }
 
-.contenedor__listado-tabla button:hover {
+.contenedor__listado-tabla button.boton-modificar {
+
+    background-color: rgba(197, 168, 128, 0.1);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold, #c5a880);
+}
+
+.contenedor__listado-tabla button.boton-modificar:hover {
+
+    background-color: var(--accent-gold, #c5a880);
+    color: #0a0d0c;
+    box-shadow: 0 0 10px rgba(197, 168, 128, 0.25);
+}
+
+.contenedor__listado-tabla button.boton-eliminar {
+
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.contenedor__listado-tabla button.boton-eliminar:hover {
 
     background-color: #ef4444;
     color: #ffffff;
-    border-color: #ef4444;
     box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
-} 
+}

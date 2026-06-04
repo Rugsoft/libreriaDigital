@@ -50,20 +50,30 @@ function mostrarLibros(){
 
         const fila = document.createElement("tr");
 
-         // Creamos cada celda y aplicamos .textContent para evitar inyecciones XSS
+         // Creamos cada celda y aplicamos .textContent para evitar inyecciones
         const tdTitulo = document.createElement("td");
         tdTitulo.textContent = libro.titulo;
         const tdAutor = document.createElement("td");
         tdAutor.textContent = libro.autor;
         const tdGenero = document.createElement("td");
         tdGenero.textContent = libro.genero;
+
         const tdAcciones = document.createElement("td");
+        tdAcciones.classList.add("contenedor__listado-acciones");
         const botonEliminar = document.createElement("button");
         botonEliminar.textContent = "Eliminar";
+        botonEliminar.classList.add("boton-eliminar");
+        const botonModificar = document.createElement("button");
+        botonModificar.textContent = "Modificar";
+        botonModificar.classList.add("boton-modificar");
+
 
         // Manejador de eventos dinámico y seguro
         botonEliminar.addEventListener("click", () => eliminarLibro(indice));
         tdAcciones.appendChild(botonEliminar);
+        botonModificar.addEventListener("click", () => modificarLibro(indice));
+        tdAcciones.appendChild(botonModificar);
+
 
         // Añadimos celdas a la fila
         fila.appendChild(tdTitulo);
@@ -89,6 +99,17 @@ function eliminarLibro(indice) {
     libros.splice(indice, 1);
     mostrarLibros();
     guardarLibrosLocalStorage();
+}
+
+function modificarLibro(indice) {
+
+    inputTitulo.value = libros[indice].titulo;
+    inputAutor.value = libros[indice].autor;
+    inputGenero.value = libros[indice].genero;
+
+    eliminarLibro(indice);
+    inputTitulo.focus();
+
 }
 
 function guardarLibrosLocalStorage() {
