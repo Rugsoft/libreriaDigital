@@ -185,6 +185,8 @@ body {
     color: var(--text-muted);
     font-style: italic;
     margin-bottom: 2rem;
+    justify-self: end;
+    align-self: end;
 }
 
 .contenedor__listado-registros::before {
