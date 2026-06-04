@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Libros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <header class="contenedor__cabeza">
+            <h1 class="contenedor__cabeza-titulo">Gestión de Libros</h1>
+            <p class="contenedor__cabeza-parrafo">Organiza y gestiona tus libros favoritos con facilidad.</p>
+        </header>
+
+        <section class="contenedor__añadir">
+
+            <h2 class="contenedor__añadir-titulo">Añadir Libros a la colección</h2>
+
+            <label for="titulo">Título del libro</label>
+            <input type="text" id="titulo" placeholder="Introduzca el título">
+
+            <label for="autor">Autor del libro</label>
+            <input type="text" id="autor" placeholder="Introduzca el autor">
+
+            <label for="genero">Género del libro</label>
+            <input type="text" id="genero" placeholder="Introduzca el género">
+
+            <button class="contenedor__añadir-boton" id="btnAñadir">Añadir libro</button>
+            
+
+        </section>
+
+        <section class="contenedor__listado">
+
+            <h2 class="contenedor__listado-titulo">Listado de libros</h2>
+            <p class="contenedor__listado-registros">Registros: 0</p>
+
+            <table class="contenedor__listado-tabla">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Género</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaLibros">
+                </tbody>
+            </table>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
