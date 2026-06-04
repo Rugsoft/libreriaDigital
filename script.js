@@ -32,6 +32,7 @@ function añadirLibro() {
 
     limpiarFormulario();
     mostrarLibros();
+    guardarLibrosLocalStorage();
 }
 
 function limpiarFormulario() {
@@ -74,6 +75,11 @@ function eliminarProducto(indice) {
 
     libros.splice(indice, 1);
     mostrarLibros();
+    guardarLibrosLocalStorage();
+}
+
+function guardarLibrosLocalStorage() {
+    localStorage.setItem("libros", JSON.stringify(libros));
 }
 
 mostrarLibros();
