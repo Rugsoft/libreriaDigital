@@ -16,12 +16,17 @@ const btnAñadir = document.getElementById("btnAñadir");
 const btnMostrar = document.getElementById("btnMostrar");
 const btnDisponibles = document.getElementById("btnDisponibles");
 const btnBuscar = document.getElementById("btnBuscar");
+const btnImportar = document.getElementById("btnImportar");
+const btnExportar = document.getElementById("btnExportar");
+
 
 
 btnAñadir.addEventListener("click", añadirLibro);
 btnMostrar.addEventListener("click", () => mostrarLibros(libros));
 btnDisponibles.addEventListener("click", mostrarDisponibles);
 btnBuscar.addEventListener("click", buscarLibro);
+btnImportar.addEventListener("click", importarLibros);
+btnExportar.addEventListener("click", exportarLibros);
 
 
 function añadirLibro() {
@@ -247,6 +252,44 @@ function cargarLibrosLocalStorage() {
         window.alert("No se pudo cargar de localStorage", error);
         libros = [];
     }
+}
+
+function exportarLibros() {
+
+    const datos = JSON.stringify(libros, null, 4);
+    const archivo = new Blob([datos], { type: "application/json" });
+    const url = URL.createObjectURL(archivo);
+    const enlace = document.createElement("a");
+    enlace.href = url;
+    enlace.download = "libros.json";
+    enlace.click();
+    URL.revokeObjectURL(url);
+}
+
+function importarLibros() {
+
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
+    input.click();
+
+    input.addEventListener("change", (event) => {
+        const archivo = event.target.files[0];
+        if (archivo) {
+            const lector = new FileReader();
+            lector.onload = () => {
+                try {
+                    libros = JSON.parse(lector.result);
+                    mostrarLibros();
+                    guardarLibrosLocalStorage();
+                    window.alert("Libros importados correctamente.");
+                } catch (error) {
+                    window.alert("El archivo no tiene un formato JSON válido.");
+                }
+            };
+            lector.readAsText(archivo);
+        }
+    });
 }
 
 cargarLibrosLocalStorage();
