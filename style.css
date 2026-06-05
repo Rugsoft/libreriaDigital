@@ -282,3 +282,17 @@ body {
     color: #ffffff;
     box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
+
+.contenedor__listado-tabla button.boton-prestar {
+
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.contenedor__listado-tabla button.boton-prestar:hover {
+    
+    background-color: #10b981;
+    color: #0a0d0c;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}

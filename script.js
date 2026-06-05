@@ -1,4 +1,4 @@
-let = libros = [];
+let libros = [];
 
 const inputTitulo = document.getElementById("titulo");
 const inputAutor = document.getElementById("autor");
@@ -25,7 +25,8 @@ function añadirLibro() {
     const libro = {
         titulo: titulo,
         autor: autor,
-        genero: genero
+        genero: genero,
+        isDisponible: true
     }
 
     libros.push(libro);
@@ -57,6 +58,8 @@ function mostrarLibros(){
         tdAutor.textContent = libro.autor;
         const tdGenero = document.createElement("td");
         tdGenero.textContent = libro.genero;
+        const tdDisponibilidad = document.createElement("td");
+        tdDisponibilidad.textContent = libro.isDisponible ? "Disponible" : "Prestado";
 
         const tdAcciones = document.createElement("td");
         tdAcciones.classList.add("contenedor__listado-acciones");
@@ -66,6 +69,9 @@ function mostrarLibros(){
         const botonModificar = document.createElement("button");
         botonModificar.textContent = "Modificar";
         botonModificar.classList.add("boton-modificar");
+        const botonPrestar = document.createElement("button");
+        botonPrestar.textContent = libro.isDisponible ? "Prestar" : "Devolver";
+        botonPrestar.classList.add("boton-prestar");
 
 
         // Manejador de eventos dinámico y seguro
@@ -73,12 +79,15 @@ function mostrarLibros(){
         tdAcciones.appendChild(botonEliminar);
         botonModificar.addEventListener("click", () => modificarLibro(indice));
         tdAcciones.appendChild(botonModificar);
+        botonPrestar.addEventListener("click", () => prestamoLibro(indice));
+        tdAcciones.appendChild(botonPrestar);
 
 
         // Añadimos celdas a la fila
         fila.appendChild(tdTitulo);
         fila.appendChild(tdAutor);
         fila.appendChild(tdGenero);
+        fila.appendChild(tdDisponibilidad);
         fila.appendChild(tdAcciones);
 
         // Añadimos la fila a la tabla
@@ -110,6 +119,18 @@ function modificarLibro(indice) {
     eliminarLibro(indice);
     inputTitulo.focus();
 
+}
+
+function prestamoLibro(indice) {
+
+    if (libros[indice].isDisponible) {
+        libros[indice].isDisponible = false;
+    } else {
+        libros[indice].isDisponible = true;
+    }
+
+    mostrarLibros();
+    guardarLibrosLocalStorage();
 }
 
 function guardarLibrosLocalStorage() {
