@@ -1,6 +1,9 @@
 let libros = [];
 let indiceModificacion = null;
 let tablaDisponible = false;
+let tablaFiltrados = false;
+let buscar = "";
+let librosDisponibles = [];
 
 
 const inputTitulo = document.getElementById("titulo");
@@ -22,7 +25,14 @@ const btnExportar = document.getElementById("btnExportar");
 
 
 btnAñadir.addEventListener("click", añadirLibro);
-btnMostrar.addEventListener("click", () => mostrarLibros(libros));
+btnMostrar.addEventListener("click", () => {
+
+    tablaDisponible = false;
+    tablaFiltrados = false;
+    mostrarLibros(libros);
+    actualizarRegistro();
+});
+
 btnDisponibles.addEventListener("click", mostrarDisponibles);
 btnBuscar.addEventListener("click", buscarLibro);
 btnImportar.addEventListener("click", importarLibros);
@@ -62,8 +72,19 @@ function añadirLibro() {
         libros.push(libro);
     }
 
+    if (tablaDisponible) {
+
+        mostrarDisponibles();
+    } else if (tablaFiltrados) {
+
+        buscarLibro();
+    } else {
+
+        mostrarLibros();
+    }
+
+
     limpiarFormulario();
-    mostrarLibros(libros);
     guardarLibrosLocalStorage();
 }
 
@@ -140,7 +161,7 @@ function actualizarRegistro() {
 
 function mostrarDisponibles() {
 
-    const librosDisponibles = libros.filter(libro => libro.isDisponible);
+    librosDisponibles = libros.filter(libro => libro.isDisponible);
     tablaDisponible = true;
 
     if (librosDisponibles.length === 0) {
@@ -193,13 +214,19 @@ function prestamoLibro(titulo) {
     if (indice !== -1) {
         libros[indice].isDisponible = !libros[indice].isDisponible;
         if (tablaDisponible) {
+
             mostrarDisponibles();
             const isDisponible = libros.filter(libro => libro.isDisponible);
             if (isDisponible.length === 0){
+
                 tablaDisponible = false;
                 mostrarLibros();
             }
+        } else if (tablaFiltrados) {
+
+            mostrarLibros(librosFiltrados);
         } else {
+
             mostrarLibros();
         }
         guardarLibrosLocalStorage();
@@ -208,7 +235,7 @@ function prestamoLibro(titulo) {
 
 function buscarLibro() {
 
-    let buscar = inputBuscar.value.trim();
+    buscar = inputBuscar.value.trim();
 
     if (buscar === "") {
         window.alert("Por favor, introduce un término de búsqueda válido.")
@@ -217,9 +244,9 @@ function buscarLibro() {
     }
 
     const librosFiltrados = libros.filter(libro => 
-            libro.titulo.toLowerCase().includes(buscar.toLowerCase()) ||
-            libro.autor.toLowerCase().includes(buscar.toLowerCase()) ||
-            libro.genero.toLowerCase().includes(buscar.toLowerCase())
+        libro.titulo.toLowerCase().includes(buscar.toLowerCase()) ||
+        libro.autor.toLowerCase().includes(buscar.toLowerCase()) ||
+        libro.genero.toLowerCase().includes(buscar.toLowerCase())
     );
 
     if (librosFiltrados.length === 0) {
@@ -230,7 +257,7 @@ function buscarLibro() {
         inputBuscar.focus();
         return;
     }
-
+    tablaFiltrados = true;
     mostrarLibros(librosFiltrados);
 }
 
