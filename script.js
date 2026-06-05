@@ -7,6 +7,7 @@ const inputAutor = document.getElementById("autor");
 const inputGenero = document.getElementById("genero");
 
 const numeroRegistros = document.querySelector(".contenedor__listado-registros");
+const registroDisponibles = document.getElementById("registrosDisponibles");
 const tablaLibros = document.getElementById("tablaLibros");
 
 const btnAñadir = document.getElementById("btnAñadir");
@@ -118,6 +119,7 @@ function mostrarLibros(){
 function actualizarRegistro() {
 
     numeroRegistros.textContent = "Total libros: " + libros.length;
+    registroDisponibles.textContent = "Libros disponibles: " + libros.filter(libro => libro.isDisponible).length;
 
 }
 
