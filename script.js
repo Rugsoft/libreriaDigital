@@ -194,7 +194,11 @@ function prestamoLibro(titulo) {
         libros[indice].isDisponible = !libros[indice].isDisponible;
         if (tablaDisponible) {
             mostrarDisponibles();
-            tablaDisponible = false;
+            const isDisponible = libros.filter(libro => libro.isDisponible);
+            if (isDisponible.length === 0){
+                tablaDisponible = false;
+                mostrarLibros();
+            }
         } else {
             mostrarLibros();
         }
