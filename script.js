@@ -186,11 +186,6 @@ function prestamoLibro(titulo) {
     if (indice !== -1) {
         libros[indice].isDisponible = !libros[indice].isDisponible;
     }
-    /*if (libros[indice].isDisponible) {
-        libros[indice].isDisponible = false;
-    } else {
-        libros[indice].isDisponible = true;
-    }*/
    
     mostrarLibros();
     guardarLibrosLocalStorage();
@@ -201,6 +196,7 @@ function buscarLibro() {
     let buscar = inputBuscar.value.trim();
 
     if (buscar === "") {
+        window.alert("Por favor, introduce un término de búsqueda válido.")
         mostrarLibros();
         return;
     }
@@ -210,6 +206,15 @@ function buscarLibro() {
             libro.autor.toLowerCase().includes(buscar.toLowerCase()) ||
             libro.genero.toLowerCase().includes(buscar.toLowerCase())
     );
+
+    if (librosFiltrados.length === 0) {
+        
+        window.alert("No se encontraron libros con ese término de búsqueda.");
+        mostrarLibros();
+        inputBuscar.value = "";
+        inputBuscar.focus();
+        return;
+    }
 
     mostrarLibros(librosFiltrados);
 }
