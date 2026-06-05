@@ -4,6 +4,7 @@ let tablaDisponible = false;
 let tablaFiltrados = false;
 let buscar = "";
 let librosDisponibles = [];
+let librosFiltrados = [];
 
 
 const inputTitulo = document.getElementById("titulo");
@@ -16,6 +17,7 @@ const registroDisponibles = document.getElementById("registrosDisponibles");
 const tablaLibros = document.getElementById("tablaLibros");
 
 const btnAñadir = document.getElementById("btnAñadir");
+const formularioAñadir = document.getElementById("formularioAñadir");
 const btnMostrar = document.getElementById("btnMostrar");
 const btnDisponibles = document.getElementById("btnDisponibles");
 const btnBuscar = document.getElementById("btnBuscar");
@@ -24,7 +26,7 @@ const btnExportar = document.getElementById("btnExportar");
 
 
 
-btnAñadir.addEventListener("click", añadirLibro);
+formularioAñadir.addEventListener("submit", añadirLibro);
 btnMostrar.addEventListener("click", () => {
 
     tablaDisponible = false;
@@ -39,7 +41,8 @@ btnImportar.addEventListener("click", importarLibros);
 btnExportar.addEventListener("click", exportarLibros);
 
 
-function añadirLibro() {
+function añadirLibro(event) {
+    if (event) event.preventDefault();
 
     let titulo = inputTitulo.value.trim();
     let autor = inputAutor.value.trim();
@@ -243,7 +246,7 @@ function buscarLibro() {
         return;
     }
 
-    const librosFiltrados = libros.filter(libro => 
+    librosFiltrados = libros.filter(libro => 
         libro.titulo.toLowerCase().includes(buscar.toLowerCase()) ||
         libro.autor.toLowerCase().includes(buscar.toLowerCase()) ||
         libro.genero.toLowerCase().includes(buscar.toLowerCase())

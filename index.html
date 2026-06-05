@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Libros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,16 +22,18 @@
 
             <h2 class="contenedor__añadir-titulo">Añadir Libros a la colección</h2>
 
-            <label for="titulo">Título del libro</label>
-            <input type="text" id="titulo" placeholder="Introduzca el título" required>
+            <form id="formularioAñadir">
+                <label for="titulo">Título del libro</label>
+                <input type="text" id="titulo" placeholder="Introduzca el título" required>
 
-            <label for="autor">Autor del libro</label>
-            <input type="text" id="autor" placeholder="Introduzca el autor" required>
+                <label for="autor">Autor del libro</label>
+                <input type="text" id="autor" placeholder="Introduzca el autor" required>
 
-            <label for="genero">Género del libro</label>
-            <input type="text" id="genero" placeholder="Introduzca el género" required>
+                <label for="genero">Género del libro</label>
+                <input type="text" id="genero" placeholder="Introduzca el género" required>
 
-            <button class="contenedor__añadir-boton" id="btnAñadir">Añadir libro</button>
+                <button type="submit" class="contenedor__añadir-boton" id="btnAñadir">Añadir libro</button>
+            </form>
             
 
         </section>
@@ -39,7 +44,7 @@
         <div class="contenedor__manejo-datos-acciones">
             <button id="btnExportar">Exportar Datos</button>                       
             <button id="btnImportar">Importar Datos</button>
-        <div>
+        </div>
             
         </section>
 
