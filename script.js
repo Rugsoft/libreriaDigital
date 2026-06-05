@@ -1,4 +1,6 @@
 let libros = [];
+let indiceModificacion = null;
+
 
 const inputTitulo = document.getElementById("titulo");
 const inputAutor = document.getElementById("autor");
@@ -22,14 +24,27 @@ function añadirLibro() {
         return;
     }
 
-    const libro = {
+    if (indiceModificacion !== null) {
+
+        libros[indiceModificacion] = {
+            titulo: titulo,
+            autor: autor,
+            genero: genero,
+            isDisponible: libros[indiceModificacion].isDisponible
+        };
+
+        indiceModificacion = null;
+        btnAñadir.textContent = "Añadir Libro";
+    } else {
+
+        const libro = {
         titulo: titulo,
         autor: autor,
         genero: genero,
         isDisponible: true
+        }
+        libros.push(libro);
     }
-
-    libros.push(libro);
 
     limpiarFormulario();
     mostrarLibros();
@@ -119,7 +134,11 @@ function modificarLibro(indice) {
     inputAutor.value = libros[indice].autor;
     inputGenero.value = libros[indice].genero;
 
-    eliminarLibro(indice);
+    indiceModificacion = indice;
+
+    btnAñadir.textContent = "Guardas Cambios";
+
+    //eliminarLibro(indice);
     inputTitulo.focus();
 
 }
