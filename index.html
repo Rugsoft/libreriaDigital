@@ -32,6 +32,9 @@
                 <label for="genero">Género del libro</label>
                 <input type="text" id="genero" placeholder="Introduzca el género" required>
 
+                <label for="ISBN">ISBN</label>
+                <input type="text" id="ISBN" placeholder="Introduzca el ISBN" required>
+
                 <button type="submit" class="contenedor__añadir-boton" id="btnAñadir">Añadir libro</button>
             </form>
             
@@ -54,19 +57,22 @@
             <p class="contenedor__listado-registros">Total Libros: 0</p>
             <p class="contenedor__listado-registros" id="registrosDisponibles">Libros disponibles: 0</p>
 
-            <table class="contenedor__listado-tabla">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Autor</th>
-                        <th>Género</th>
-                        <th>Disponibilidad</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaLibros">
-                </tbody>
-            </table>
+            <div class="contenedor__tabla-wrapper">
+                <table class="contenedor__listado-tabla">
+                    <thead>
+                        <tr>
+                            <th>ISBN</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Género</th>
+                            <th>Disponibilidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaLibros">
+                    </tbody>
+                </table>
+            </div>
 
             <div class="contenedor__botones">
                 <select name="estadoLibros" id="estadoLibros">

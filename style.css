@@ -446,3 +446,11 @@ body {
     color: var(--bg-dark);
     box-shadow: 0 0 15px rgba(197, 168, 128, 0.25);
 }
+
+/* Contenedor responsivo para la tabla de libros */
+.contenedor__tabla-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 1rem;
+}
