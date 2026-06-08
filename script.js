@@ -16,6 +16,7 @@ const inputBuscar = document.getElementById("buscar");
 // Referencias a los elementos de visualización de datos y contadores
 const numeroRegistros = document.querySelector(".contenedor__listado-registros");
 const registroDisponibles = document.getElementById("registrosDisponibles");
+const registroNoDisponibles = document.getElementById("registrosNoDisponibles");
 const tablaLibros = document.getElementById("tablaLibros");
 
 // Referencias a los botones y elementos de control
@@ -231,6 +232,7 @@ function actualizarRegistro() {
     numeroRegistros.textContent = `Total libros: ${libros.length}`;
     const disponibles = libros.filter(libro => libro.isDisponible).length;
     registroDisponibles.textContent = `Libros disponibles: ${disponibles}`;
+    registroNoDisponibles.textContent = `Libros no disponibles: ${libros.length - disponibles}`;
 }
 
 /**
