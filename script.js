@@ -181,6 +181,7 @@ function mostrarLibros(datosLibros = libros) {
         // Celda de Disponibilidad
         const tdDisponibilidad = document.createElement("td");
         tdDisponibilidad.textContent = libro.isDisponible ? "Disponible" : "Prestado";
+        tdDisponibilidad.classList.add(libro.isDisponible ? "estado-disponible" : "estado-prestado");
 
         // Celda de Acciones con sus respectivos botones
         const tdAcciones = document.createElement("td");

@@ -460,3 +460,15 @@ body {
     -webkit-overflow-scrolling: touch;
     margin-top: 1rem;
 }
+
+.contenedor__listado-tabla td.estado-disponible {
+
+    color: #10b981;
+    font-weight: 600;
+}
+
+.contenedor__listado-tabla td.estado-prestado {
+
+    color: #ef4444;
+    font-weight: 600;
+}
